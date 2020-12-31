@@ -97,6 +97,7 @@ fi
 # windows, or windows-x86_64
 
 if [[ "$(uname -s | grep -i -c darwin)" -ne 0 ]]; then
+    sed_bak=".bak"
     HOST_TAG=darwin-x86_64
 elif [[ "$(uname -s | grep -i -c linux)" -ne 0 ]]; then
     HOST_TAG=linux-x86_64
@@ -258,17 +259,17 @@ cp "$ANDROID_NDK_ROOT/sources/android/cpufeatures/cpu-features.c" .
 # Cleanup the sources for the C++ compiler
 # https://github.com/weidai11/cryptopp/issues/926
 
-sed -i 's/p = memmem/p = (const char*)memmem/g' cpu-features.c
-sed -i 's/p  = memmem/p  = (const char*)memmem/g' cpu-features.c
-sed -i 's/p = memchr/p = (const char*)memchr/g' cpu-features.c
-sed -i 's/p  = memchr/p  = (const char*)memchr/g' cpu-features.c
+sed -i${sed_bak} 's/p = memmem/p = (const char*)memmem/g' cpu-features.c
+sed -i${sed_bak} 's/p  = memmem/p  = (const char*)memmem/g' cpu-features.c
+sed -i${sed_bak} 's/p = memchr/p = (const char*)memchr/g' cpu-features.c
+sed -i${sed_bak} 's/p  = memchr/p  = (const char*)memchr/g' cpu-features.c
 
-sed -i 's/q = memmem/q = (const char*)memmem/g' cpu-features.c
-sed -i 's/q  = memmem/q  = (const char*)memmem/g' cpu-features.c
-sed -i 's/q = memchr/q = (const char*)memchr/g' cpu-features.c
-sed -i 's/q  = memchr/q  = (const char*)memchr/g' cpu-features.c
+sed -i${sed_bak} 's/q = memmem/q = (const char*)memmem/g' cpu-features.c
+sed -i${sed_bak} 's/q  = memmem/q  = (const char*)memmem/g' cpu-features.c
+sed -i${sed_bak} 's/q = memchr/q = (const char*)memchr/g' cpu-features.c
+sed -i${sed_bak} 's/q  = memchr/q  = (const char*)memchr/g' cpu-features.c
 
-sed -i 's/cpuinfo = malloc/cpuinfo = (char*)malloc/g' cpu-features.c
+sed -i${sed_bak} 's/cpuinfo = malloc/cpuinfo = (char*)malloc/g' cpu-features.c
 
 #####################################################################
 
